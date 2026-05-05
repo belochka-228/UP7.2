@@ -1,0 +1,19 @@
+﻿@startuml
+left to right direction
+actor Пользователь
+
+rectangle "Приложение шифра Порта" {
+  usecase "Зашифровать сообщение" as UC1
+  usecase "Расшифровать сообщение" as UC2
+  usecase "Настроить таблицу кодов" as UC3
+  usecase "Просмотреть таблицу кодов" as UC4
+}
+
+Пользователь --> UC1
+Пользователь --> UC2
+Пользователь --> UC3
+Пользователь --> UC4
+
+UC1 ..> UC3 : <<extend>>
+UC2 ..> UC3 : <<extend>>
+@enduml
