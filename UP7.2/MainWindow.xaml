@@ -4,9 +4,48 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP7._2"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Шифр Порта — Вариант 14" 
+        Height="280" 
+        Width="500"
+        ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <Label Content="Введите текст:" FontWeight="SemiBold"/>
+            <TextBox x:Name="InputTextBox" Height="25"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="EncryptButton" Content="Зашифровать" Width="110"
+                    ToolTip="Выполнить шифрование введённого слова"
+                    Click="EncryptButton_Click" Margin="0,0,10,0"/>
+            <Button x:Name="DecryptButton" Content="Расшифровать" Width="110"
+                    ToolTip="Выполнить дешифрование введённого кода"
+                    Click="DecryptButton_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="0,0,0,10">
+            <Label Content="Результат:" FontWeight="SemiBold"/>
+            <TextBox x:Name="ResultTextBox" IsReadOnly="True" Height="25"
+                     Background="#F5F5F5"/>
+        </StackPanel>
+
+        <Button Grid.Row="3" x:Name="EditTableButton" Content="Настроить таблицу кодов"
+                Width="160" HorizontalAlignment="Left"
+                ToolTip="Открыть окно редактирования таблицы кодов"
+                Click="EditTableButton_Click"/>
     </Grid>
 </Window>
+
+
+
+
