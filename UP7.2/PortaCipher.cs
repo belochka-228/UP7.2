@@ -8,13 +8,14 @@ namespace UP7._2
 {
     /// <summary>
     /// Реализует шифрование и дешифрование по методу Порта с использованием
-    /// предустановленной таблицы кодов (конфигурируемой).
+    /// предустановленной таблицы кодов.
     /// </summary>
     public static class PortaCipher
     {
         /// <summary>
-        /// Шифрует указанное слово. Если слово найдено в таблице, возвращается его код.
-        /// В противном случае возвращается null.
+        /// Шифрует указанное слово
+        /// Если слово найдено в таблице, возвращается его код
+        /// В противном случае возвращается null
         /// </summary>
         public static string Encrypt(string plainText, Dictionary<string, string> codeTable)
         {
@@ -30,8 +31,9 @@ namespace UP7._2
         }
 
         /// <summary>
-        /// Дешифрует указанный код. Если код найден в таблице, возвращается исходное слово.
-        /// В противном случае возвращается null.
+        /// Дешифрует указанный код
+        /// Если код найден в таблице, возвращается исходное слово
+        /// В противном случае возвращается null
         /// </summary>
         public static string Decrypt(string cipherText, Dictionary<string, string> codeTable)
         {
@@ -40,7 +42,6 @@ namespace UP7._2
             if (string.IsNullOrWhiteSpace(cipherText))
                 throw new ArgumentException("Поле не может быть пустым.", nameof(cipherText));
 
-            // Обратный поиск: значение → ключ
             var reverseTable = codeTable.ToDictionary(kvp => kvp.Value, kvp => kvp.Key);
             if (reverseTable.TryGetValue(cipherText, out string original))
                 return original;

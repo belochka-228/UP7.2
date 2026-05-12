@@ -8,8 +8,7 @@ namespace PortaCipherApp
     public class UnitTest1
     {
         /// <summary>
-        /// TC‑R06: Проверка шифрования слова, присутствующего в таблице кодов
-        /// Ожидается, что метод Encrypt вернёт соответствующий код
+        /// TC‑R05: Проверка шифрования слова из таблицы кодов (позитивный тест)
         /// </summary>
         [TestMethod]
         public void Encrypt_WordInTable_ReturnsCode()
@@ -22,8 +21,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// TC‑R07: Проверка дешифрования кода, присутствующего в таблице кодов
-        /// Ожидается, что метод Decrypt вернёт исходное слово
+        /// TC‑R06: Проверка дешифрования кода из таблицы кодов (позитивный тест)
         /// </summary>
         [TestMethod]
         public void Decrypt_CodeInTable_ReturnsWord()
@@ -36,8 +34,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// TC‑R08: Проверка поведения при шифровании слова, отсутствующего в таблице
-        /// Ожидается возврат null
+        /// TC‑R07: Проверка обработки слова, отсутствующего в таблице кодов
         /// </summary>
         [TestMethod]
         public void Encrypt_WordNotFound_ReturnsNull()
@@ -50,8 +47,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// TC‑R13: Проверка поведения при дешифровании кода, отсутствующего в таблице
-        /// Ожидается возврат null
+        /// TC‑R12: Проверка обработки отсутствующего кода при дешифровании
         /// </summary>
         [TestMethod]
         public void Decrypt_CodeNotFound_ReturnsNull()
@@ -64,8 +60,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// Проверка валидации: пустая строка при шифровании должна вызывать ArgumentException
-        /// Соответствует требованиям TC‑01 и TC‑R10
+        /// Проверка валидации при шифровании
         /// </summary>
         [TestMethod]
         public void Encrypt_EmptyString_ThrowsArgumentException()
@@ -75,7 +70,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// Проверка валидации: пустая строка при дешифровании должна вызывать ArgumentException
+        /// Проверка валидации: пустая строка при дешифровании
         /// </summary>
         [TestMethod]
         public void Decrypt_EmptyString_ThrowsArgumentException()
@@ -85,7 +80,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// TC‑R11: Проверка, что строка из одних пробелов при шифровании вызывает ArgumentException
+        /// TC‑R10: Проверка ввода строки из одних пробелов
         /// </summary>
         [TestMethod]
         public void Encrypt_WhiteSpaceString_ThrowsArgumentException()
@@ -95,7 +90,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// TC‑R11 (дешифрование): Проверка, что строка из пробелов при дешифровании вызывает ArgumentException
+        /// TC‑R10 (дешифрование): Проверка, что строка из пробелов при дешифровании вызывает ArgumentException
         /// </summary>
         [TestMethod]
         public void Decrypt_WhiteSpaceString_ThrowsArgumentException()
@@ -125,8 +120,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// TC‑R12: Проверка конфигурируемости таблицы кодов
-        /// После добавления новой пары шифрование должно использовать обновлённую таблицу
+        /// TC‑R11: Проверка работы с изменённой таблицей кодов
         /// </summary>
         [TestMethod]
         public void Encrypt_AfterAddingPairToTable_UsesUpdatedTable()
@@ -135,7 +129,6 @@ namespace PortaCipherApp
             string newWord = "мир";
             string newCode = "world";
 
-            // Имитация настройки: добавляем новую пару
             table[newWord] = newCode;
 
             string encrypted = PortaCipher.Encrypt(newWord, table);
@@ -146,7 +139,7 @@ namespace PortaCipherApp
         }
 
         /// <summary>
-        /// Дополнительный тест: проверка обратимости шифрования (полный цикл Encrypt → Decrypt).
+        /// проверка обратимости шифрования
         /// </summary>
         [TestMethod]
         public void RoundTrip_EncryptDecrypt_ReturnsOriginalWord()

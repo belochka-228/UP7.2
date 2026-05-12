@@ -20,29 +20,21 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="0,0,0,10">
-            <Label Content="Введите текст:" FontWeight="SemiBold"/>
+            <TextBlock Text="Введите текст:" FontWeight="SemiBold"/>
             <TextBox x:Name="InputTextBox" Height="25"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <Button x:Name="EncryptButton" Content="Зашифровать" Width="110"
-                    ToolTip="Выполнить шифрование введённого слова"
-                    Click="EncryptButton_Click" Margin="0,0,10,0"/>
-            <Button x:Name="DecryptButton" Content="Расшифровать" Width="110"
-                    ToolTip="Выполнить дешифрование введённого кода"
-                    Click="DecryptButton_Click"/>
+            <Button x:Name="EncryptButton" Content="Зашифровать" Width="110" ToolTip="Выполнить шифрование введённого слова" Click="EncryptButton_Click" Margin="0,0,10,0"/>
+            <Button x:Name="DecryptButton" Content="Расшифровать" Width="110" ToolTip="Выполнить дешифрование введённого кода" Click="DecryptButton_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Margin="0,0,0,10">
-            <Label Content="Результат:" FontWeight="SemiBold"/>
-            <TextBox x:Name="ResultTextBox" IsReadOnly="True" Height="25"
-                     Background="#F5F5F5"/>
+            <TextBlock Text="Результат:" FontWeight="SemiBold"/>
+            <TextBox x:Name="ResultTextBox" IsReadOnly="True" Height="25" Background="#F5F5F5"/>
         </StackPanel>
 
-        <Button Grid.Row="3" x:Name="EditTableButton" Content="Настроить таблицу кодов"
-                Width="160" HorizontalAlignment="Left"
-                ToolTip="Открыть окно редактирования таблицы кодов"
-                Click="EditTableButton_Click"/>
+        <Button Grid.Row="3" x:Name="EditTableButton" Content="Настроить таблицу кодов" Width="160" HorizontalAlignment="Left" ToolTip="Открыть окно редактирования таблицы кодов" Click="EditTableButton_Click"/>
     </Grid>
 </Window>
 

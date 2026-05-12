@@ -21,14 +21,13 @@ namespace UP7._2
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// Таблица кодов, используемая при шифровании/дешифровании.
+        /// Таблица кодов, используемая при шифровании/дешифровании
         /// </summary>
         private Dictionary<string, string> _codeTable;
 
         public MainWindow()
         {
             InitializeComponent();
-            // Начальное наполнение таблицы
             _codeTable = new Dictionary<string, string>
             {
                 { "привет", "alpha" },
@@ -38,8 +37,7 @@ namespace UP7._2
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки «Зашифровать».
-        /// Выполняет шифрование текста из InputTextBox, результат помещает в ResultTextBox.
+        /// Обработчик нажатия кнопки «Зашифровать»
         /// </summary>
         private void EncryptButton_Click(object sender, RoutedEventArgs e)
         {
@@ -47,8 +45,7 @@ namespace UP7._2
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки «Расшифровать».
-        /// Выполняет дешифрование текста из InputTextBox, результат помещает в ResultTextBox.
+        /// Обработчик нажатия кнопки «Расшифровать»
         /// </summary>
         private void DecryptButton_Click(object sender, RoutedEventArgs e)
         {
@@ -56,26 +53,18 @@ namespace UP7._2
         }
 
         /// <summary>
-        /// Общая логика выполнения операции шифрования/дешифрования с обработкой ошибок.
+        /// Общая логика выполнения операции шифрования/дешифрования с обработкой ошибок
         /// </summary>
-        /// <param name="isEncrypt">True для шифрования, false для дешифрования.</param>
         private void ExecuteOperation(bool isEncrypt)
         {
             string input = InputTextBox.Text;
-
             try
             {
-                string result = isEncrypt
-                    ? PortaCipher.Encrypt(input, _codeTable)
-                    : PortaCipher.Decrypt(input, _codeTable);
+                string result = isEncrypt ? PortaCipher.Encrypt(input, _codeTable) : PortaCipher.Decrypt(input, _codeTable);
 
                 if (result == null)
                 {
-                    MessageBox.Show(
-                        isEncrypt ? "Слово не найдено в таблице." : "Код не найден в таблице.",
-                        "Информация",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                    MessageBox.Show(isEncrypt ? "Слово не найдено в таблице." : "Код не найден в таблице.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                     ResultTextBox.Clear();
                 }
                 else
@@ -83,19 +72,14 @@ namespace UP7._2
                     ResultTextBox.Text = result;
                 }
             }
-            catch (ArgumentNullException)
+            catch (Exception)
             {
                 MessageBox.Show("Поле не может быть пустым.", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
         }
-
         /// <summary>
-        /// Обработчик кнопки настройки таблицы кодов.
-        /// Открывает окно редактора и обновляет локальную таблицу.
+        /// Обработчик кнопки настройки таблицы кодов
+        /// Открывает окно редактора и обновляет локальную таблицу
         /// </summary>
         private void EditTableButton_Click(object sender, RoutedEventArgs e)
         {
@@ -105,7 +89,6 @@ namespace UP7._2
 
             if (dialogResult == true)
             {
-                // Заменяем таблицу на отредактированную версию
                 _codeTable = editorWindow.EditedTable;
             }
         }

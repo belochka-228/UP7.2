@@ -16,23 +16,20 @@ using System.Windows.Shapes;
 namespace UP7._2
 {
     /// <summary>
-    /// Окно редактирования таблицы кодов (слово → код).
+    /// Окно редактирования таблицы кодов
     /// </summary>
     public partial class TableEditorWindow : Window
     {
         /// <summary>
-        /// Временная таблица для редактирования.
+        /// Временная таблица для редактирования
         /// </summary>
         public Dictionary<string, string> EditedTable { get; private set; }
-
         public TableEditorWindow(Dictionary<string, string> currentTable)
         {
             InitializeComponent();
 
-            // Копируем словарь для безопасного редактирования
             EditedTable = new Dictionary<string, string>(currentTable);
 
-            // Преобразуем словарь в DataTable для отображения в DataGrid
             var dataTable = new DataTable();
             dataTable.Columns.Add("Слово", typeof(string));
             dataTable.Columns.Add("Код", typeof(string));
@@ -44,9 +41,9 @@ namespace UP7._2
 
             CodesDataGrid.ItemsSource = dataTable.DefaultView;
         }
-
         /// <summary>
-        /// Обработчик кнопки «Сохранить». Преобразует данные из DataGrid обратно в словарь.
+        /// Обработчик кнопки «Сохранить»
+        /// Преобразует данные из DataGrid обратно в словарь
         /// </summary>
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -58,11 +55,9 @@ namespace UP7._2
                     string word = rowView[0]?.ToString() ?? string.Empty;
                     string code = rowView[1]?.ToString() ?? string.Empty;
 
-                    // Пропускаем пустые строки
                     if (string.IsNullOrWhiteSpace(word) || string.IsNullOrWhiteSpace(code))
                         continue;
 
-                    // При дублировании слова – последнее значение перезаписывает
                     newTable[word] = code;
                 }
 
@@ -71,9 +66,8 @@ namespace UP7._2
                 Close();
             }
         }
-
         /// <summary>
-        /// Обработчик кнопки «Отмена». Закрывает окно без сохранения.
+        /// Обработчик кнопки «Отмена»
         /// </summary>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
