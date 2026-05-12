@@ -11,7 +11,7 @@
 Приложение состоит из двух модулей: шифрование и дешифрование.
 
 ## Диаграмма вариантов использования
-<img width="974" height="402" alt="image" src="https://github.com/user-attachments/assets/90b0f247-96f1-4f7f-ad0d-ea630a5faadb" />
+<img width="853" height="273" alt="image" src="https://github.com/user-attachments/assets/ca0b42dd-14aa-4d89-a62d-9eef64b10c05" />
 
 ## Средства отладки
 Перечень применяемых средств отладки
